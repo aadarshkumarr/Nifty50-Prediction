@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+		<!-- Fontawesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<link rel="shortcut icon" href="" type="image/x-icon">
+
+		<title>Nifty50 Prediction</title>
+	</head>
+	<style type="text/css">
+		html{
+			scroll-behavior: smooth;
+		}
+		
+		/* width */
+		::-webkit-scrollbar {
+			width: 5px;
+		}
+
+		/* Track */
+		::-webkit-scrollbar-track {
+			box-shadow: inset 0 0 5px grey; 
+			border-radius: 10px;
+		}
+
+		/* Handle */
+		::-webkit-scrollbar-thumb {
+			background: #0275d8; 
+			border-radius: 10px;
+		}
+
+		/* Handle on hover */
+		::-webkit-scrollbar-thumb:hover {
+			background: rgb(2,100,200); 
+		}
+
+	</style>
+	<header>
+
+		<!-- Navigation Bar -->
+		{% if user.is_authenticated %}
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5 shadow-lg fixed-top">
+			<a class="navbar-brand" href="#main"><i class="fa fa-line-chart px-2" aria-hidden="true"></i>Nifty50 Prediction</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav ml-auto">
+
+					<form action="{% url 'logoutuser' %}" method="POST">
+						{% csrf_token %}
+						<button class="nav-item px-4 btn btn-primary btn-block rounded-ls" type="submit">{{ user.username|title }}</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+		{% elif request.path == '/' %}
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5 shadow-lg fixed-top">
+			<a class="navbar-brand" href="#main"><i class="fa fa-line-chart px-2" aria-hidden="true"></i>Nifty50 Prediction</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav ml-auto">
+					<a class="nav-item nav-link px-4 mx-2 btn" href="#news">News</a>
+					{% if request.path == '/about/' %}
+					<a class="nav-item nav-link px-4 mx-2 btn active" href="#">About</a>
+					{% else %}
+					<a class="nav-item nav-link px-4 mx-2 btn" href="#">About</a>
+					{% endif %}
+					<a class="nav-item px-4 btn btn-primary btn-block rounded-lg" href="{% url 'signupuser' %}">Register</a>
+				</div>
+			</div>
+		</nav>
+		{% else %}
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5 shadow-lg fixed-top">
+			<a class="navbar-brand" href="{% url 'home' %}"><i class="fa fa-line-chart px-2" aria-hidden="true"></i>Nifty50 Prediction</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav ml-auto">
+					{% if request.path == '/about/' %}
+					<a class="nav-item nav-link px-4 mx-2 btn active" href="#">About</a>
+					{% else %}
+					<a class="nav-item nav-link px-4 mx-2 btn" href="#">About</a>
+					{% endif %}
+					<a class="nav-item px-4 btn btn-primary btn-block rounded-lg" href="{% url 'home' %}">&nbsp;Log in&nbsp;&nbsp;</a>
+				</div>
+			</div>
+		</nav>
+		{% endif %}
+
+	</header>
+	<body class="text-light bg-dark">
+
+	<!-- Main Content -->
+	{% block 'content' %}
+	{% endblock 'content' %}
+
+	<!-- Optional JavaScript; choose one of the two! -->
+
+	<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+	<!-- Option 2: Separate Popper and Bootstrap JS -->
+	    <!--
+	    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script> -->
+
+
+	    {% block 'script' %}
+	    {% endblock 'script' %}
+	</body>
+	<footer class="bg-secondary text-justify text-lg-start shadow-lg">
+		<!-- Grid container -->
+		<div class="container p-4">
+			<!--Grid row-->
+			<div class="row">
+				<!--Grid column-->
+				<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+					<small>
+						We does not provide financial advice or personal investment to individuals, or act as personal financial, legal, or instututional investment advisors, or individually advocate the purchase or sale of any security or investment or the use of any particular financial strategies.
+					</small>
+				</div>
+				<!--Grid column-->
+				<!--Grid column-->
+				<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+					<small>
+						Information is provided 'as-is' and solely for informational purposes and is not advice. We does not bear any responsibility for any losses or damage that may occur as a result of reliance on this data.
+					</small>
+				</div>
+				<!--Grid column-->
+			</div>
+			<!--Grid row-->
+		</div>
+		<!-- Grid container -->
+
+		<!-- Copyright -->
+		<div class="text-center text-light p-3 bg-dark">
+			<i class="fa fa-line-chart fa-lg px-5" aria-hidden="true"></i>
+			© {% now 'Y' %} Copyright:
+			<a class="text-white" href="#">aadarshkumar.in</a>
+		</div>
+		<!-- Copyright -->
+	</footer>
+</html>
+
