@@ -70,11 +70,11 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav ml-auto">
-					<a class="nav-item nav-link px-4 mx-2 btn" href="#news">News</a>
+					<a class="nav-item nav-link px-4 mx-2 btn" href="#news"></a>
 					{% if request.path == '/about/' %}
-					<a class="nav-item nav-link px-4 mx-2 btn active" href="#">About</a>
+					<a class="nav-item nav-link px-4 mx-2 btn active" href="#"></a>
 					{% else %}
-					<a class="nav-item nav-link px-4 mx-2 btn" href="#">About</a>
+					<a class="nav-item nav-link px-4 mx-2 btn" href="#"></a>
 					{% endif %}
 					<a class="nav-item px-4 btn btn-primary btn-block rounded-lg" href="{% url 'signupuser' %}">Register</a>
 				</div>
@@ -89,9 +89,9 @@
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav ml-auto">
 					{% if request.path == '/about/' %}
-					<a class="nav-item nav-link px-4 mx-2 btn active" href="#">About</a>
+					<a class="nav-item nav-link px-4 mx-2 btn active" href="#"></a>
 					{% else %}
-					<a class="nav-item nav-link px-4 mx-2 btn" href="#">About</a>
+					<a class="nav-item nav-link px-4 mx-2 btn" href="#"></a>
 					{% endif %}
 					<a class="nav-item px-4 btn btn-primary btn-block rounded-lg" href="{% url 'home' %}">&nbsp;Log in&nbsp;&nbsp;</a>
 				</div>
